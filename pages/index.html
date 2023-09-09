@@ -1,24 +1,493 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Answer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  </head>
-  <body>
-    <%- include('./layout/header'); -%>
 
-    <h1 class="index-title">我是首頁</h1>
-    <img src="../assets/images/cat.jpg" style="width: 300px;" alt="cat">
-   
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Answer</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto+Mono&display=swap');
+  </style>
+</head>
 
-<button type="button" class="btn btn-link">Link</button>
+<body>
+  <!-- <%- include('./layout/header'); -%> -->
+  <!-- New Admin Modal -->
+  <div class="modal fade" id="newAdminModal" tabindex="-1" aria-labelledby="newAdminModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content border-radius-none ">
+        <div class="modal-body modal-dialog-scrollable px-5 pt-5 pb-3">
+          <div class="d-flex justify-content-between mb-4">
+            <h2 class="fs-4 fw-bold text-gray-900 mb-0">New Admin</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Account</p>
+            <div class="mb-3">
+              <label for="inputName" class="form-label fs-14px text-gray-900 mb-1">Name</label>
+              <input type="email" class="form-control h-48 border-radius-2" id="inputName"
+                aria-describedby="name">
+            </div>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label fs-14px text-gray-900 mb-1">Email</label>
+              <input type="email" class="form-control h-48 border-radius-2" id="inputEmail"
+                aria-describedby="emailHelp">
+            </div>
+            <div class="h-24 border-bottom-gray-400 mb-4"></div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Verification</p>
+            <div class="mb-3">
+              <span class="material-symbols-rounded d-inline-block align-middle me-2 text-danger">warning</span>
+              <span class="d-inline-block align-middle fw-bold"> Unverified</span>
+            </div>
+            <div class="d-grid">
+              <button type="button"
+                class="btn btn-outline-success border-radius-2 border-gray-400 fw-bold lh-1 py-3">Send Verification
+                Mail</button>
+            </div>
+            <div class="h-24 border-bottom-gray-400 mb-4"></div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Access Level</p>
 
-    <%- include('./layout/footer'); -%>
+            <div class="dropdown d-grid mb-4">
+              <a class="btn btn-outline-dark dropdown-toggle text-align-left border-gray-900 py-3" href="#"
+                role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="d-inline-block bg-blue text-align-left border-radius-2 text-gray-400"
+                  style="padding-right:209px">- Choose
+                  access level -</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Lv 1</a></li>
+                <li><a class="dropdown-item" href="#">Lv 2</a></li>
+                <li><a class="dropdown-item" href="#">Lv 3</a></li>
+                <li><a class="dropdown-item" href="#">Lv 4</a></li>
+              </ul>
+            </div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Custom Access</p>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="lectureCheck">
+              <label class="form-check-label" for="lectureCheck">Lecture</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="couponCheck">
+              <label class="form-check-label" for="couponCheck">Coupon</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="messageCheck">
+              <label class="form-check-label" for="messageCheck">Message</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="settingCheck">
+              <label class="form-check-label" for="settingCheck">Setting</label>
+            </div>
+            <div class="mb-5 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="taskMenuCheck">
+              <label class="form-check-label" for="taskMenuCheck">Task Menu</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer px-0">
+          <div class="d-flex justify-content-end me-5">
+            <button type="button" class="btn btn-outline-success border-radius-2 me-3 py-2 px-4"
+              data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success border-radius-2 py-2 px-4">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Student Profile Modal -->
+  <div class="modal fade" id="student-profile" data-bs-backdrop="modal" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog d-flex align-items-center" style="position: absolute; top:0; bottom:0; left:0; right:0;">
+      <div class="modal-content p-4 d-flex flex-row flex-wrap border-none border-radius-none">
+        <div class="modal-header border-0 p-0 w-166">
+          <img class="img-fluid h-100 object-fill"
+            src="https://github.com/hexschool/2022-web-layout-training/blob/main/week5/emir.jpeg?raw=true"
+            alt="emir_photo">
 
-    <script type="module" src="../main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-  </body>
+        </div>
+        <div class="modal-body col-6 py-0 me-n16px d-flex justify-content-between">
+          <ul class="list-unstyled mb-0">
+            <li class="text-gray-900">#1</li>
+            <li class="text-gray-900 mt-2">Admin</li>
+            <li class="fw-bold fs-4">Emir Wicks</li>
+            <li class="text-gray-600 mt-2 fs-14px">emir.wicks@mail.com</li>
+            <li class="text-gray-900 verify-btn d-inline-block mt-3 fs-14px">Verified</li>
+          </ul>
+          <div class="d-flex flex-column justify-content-between">
+            <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn accordion-button m-0 p-0 h-24" data-bs-toggle="collapse"
+              data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><span
+                class="material-symbols-rounded d-inline-block">
+                expand_more
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="col-12 px-0 card card-body border-none border-radius-none collapse" id="collapseExample">
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-outline-danger me-3" style="width: 146px;">Danger</button>
+            <button type="button" class="btn btn-success" style="width: 92px;">Success</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Edit Modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content border-radius-none ">
+        <div class="modal-body modal-dialog-scrollable px-5 pt-5 pb-3">
+          <div class="d-flex justify-content-between mb-4">
+            <h2 class="fs-4 fw-bold text-gray-900 mb-0">Edit Admin</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Account</p>
+            <fieldset disabled>
+              <div class="mb-3">
+                <label for="disabledInputName" class="form-label fs-14px text-gray-900 mb-1">Name</label>
+                <input type="email" class="form-control h-48 border-radius-2" id="disabledInputName"
+                  aria-describedby="name" placeholder="Emir Wicks">
+              </div>
+              <div class="mb-3">
+                <label for="disabledInputEmail1" class="form-label fs-14px text-gray-900 mb-1">Email</label>
+                <input type="email" class="form-control h-48 border-radius-2" id="disabledInputEmail1"
+                  aria-describedby="emailHelp" placeholder="emir.wicks@mail.com">
+              </div>
+            </fieldset>
+
+            <div class="h-24 border-bottom-gray-400 mb-4"></div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Verification</p>
+            <div class="d-flex justify-content-between">
+              <div class="mb-3">
+                <span class="material-symbols-rounded d-inline-block align-middle me-2 text-success">
+                  check_circle
+                  </span>
+                <span class="d-inline-block align-middle fw-bold"> verified</span>
+              </div>
+              <div>
+                <span class="fs-14px text-gray-900">2020/4/12</span>
+              </div>
+            </div>
+            <fieldset disabled>
+              <div class="d-grid">
+                <button type="button"
+                  class="btn btn-outline-secondary border-radius-2 border-gray-400 fw-bold lh-1 py-3">Send Verification
+                  Mail</button>
+              </div>
+            </fieldset>
+
+            <div class="h-24 border-bottom-gray-400 mb-4"></div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Access Level</p>
+
+            <div class="dropdown d-grid mb-4">
+              <a class="btn btn-outline-dark dropdown-toggle text-align-left border-gray-900 py-3" href="#"
+                role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="d-inline-block bg-blue text-align-left border-radius-2 text-gray-400"
+                  style="padding-right:209px">- Choose
+                  access level -</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Lv 1</a></li>
+                <li><a class="dropdown-item" href="#">Lv 2</a></li>
+                <li><a class="dropdown-item" href="#">Lv 3</a></li>
+                <li><a class="dropdown-item" href="#">Lv 4</a></li>
+              </ul>
+            </div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Custom Access</p>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="lectureCheck2">
+              <label class="form-check-label" for="lectureCheck2">Lecture</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="couponCheck2">
+              <label class="form-check-label" for="couponCheck2">Coupon</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="messageCheck2">
+              <label class="form-check-label" for="messageCheck2">Message</label>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="settingCheck2">
+              <label class="form-check-label" for="settingCheck2">Setting</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input border-radius-2 border-gray-900" id="taskMenuCheck2">
+              <label class="form-check-label" for="taskMenuCheck2">Task Menu</label>
+            </div>
+            <div class="h-24 border-bottom-gray-400 mb-4"></div>
+            <p class="fs-24px fw-bold text-gray-900 mb-3">Deactivate Account</p>
+            <div class="mb-3">
+              <span class="material-symbols-rounded d-inline-block align-middle me-2 text-danger">warning</span>
+              <span class="d-inline-block align-middle text-danger"> This cannot be undone!</span>
+            </div>
+            <div class="d-grid">
+              <button type="button"
+                class="btn btn-outline-danger border-radius-2 fw-bold lh-1 py-3">Deactivate This Account</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer px-0">
+          <div class="d-flex justify-content-end me-5">
+            <button type="button" class="btn btn-outline-success border-radius-2 me-3 py-2 px-4"
+              data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success border-radius-2 py-2 px-4">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-3 py-3 px-3 bg-light">
+        <div class="h-100 d-flex flex-column justify-content-between bg-light pt-1 px-3">
+          <ul class="list-unstyled">
+            <li>
+              <h1>
+                <img class="pb-1"
+                  src="https://raw.githubusercontent.com/hexschool/2022-web-layout-training/053bcf3afe88348b79971d2ea8de28f179cba5c5/week5/logo-ANSWER.svg"
+                  alt="Logo">
+              </h1>
+            </li>
+            <a class="text-decoration-none fw-bold" href="#">
+              <li class="my-4">
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  insert_chart
+                </span>
+                <span>Dashboard</span>
+
+              </li>
+            </a>
+            <a class="text-decoration-none fw-bold" href="#">
+              <li class="my-4">
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  forum
+                </span>
+                <span>Question</span>
+
+              </li>
+            </a>
+            <a class="text-decoration-none fw-bold" href="#">
+              <li class="my-4">
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  assignment
+                </span>
+                <span>Assignment</span>
+              </li>
+            </a>
+            <a class="text-decoration-none fw-bold" href="#">
+              <li class="my-4">
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  video_library
+                </span>
+                <span>Course</span>
+
+              </li>
+            </a>
+            <a class="text-decoration-none fw-bold" href="#">
+              <li class="my-4">
+                <div class="icon-label"></div>
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  group
+                </span>
+                <span>Admin</span>
+
+              </li>
+            </a>
+            <a class="text-decoration-none fw-bold" href="">
+              <li class="my-4">
+                <span class="material-symbols-rounded d-inline-block icon-24 align-middle">
+                  settings
+                </span>
+                <span>Settings</span>
+
+              </li>
+            </a>
+          </ul>
+          <div class="d-flex ">
+            <div class="pe-2">
+              <img class="img-40 rounded-circle"
+                src="https://github.com/hexschool/2022-web-layout-training/blob/main/week5/andychen.jpeg?raw=true"
+                alt="andy_chen">
+            </div>
+            <div class="ps-2">
+              <small class="d-block text-gray-900">Andy Chen</small>
+              <small class="d-block fs-14px text-gray-600">andy0401@mail.com</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main class="h-100vh col-9 py-2vh px-3">
+        <div class="main-head pt-2vh pb-3vh px-2 d-flex justify-content-between">
+          <div class="d-inline-block"><span class="fs-4 fw-bold text-gray-900 me-4">Admin</span>
+            <a class="text-decoration-none d-inline-block ms-4" href="#" data-bs-toggle="modal"
+              data-bs-target="#newAdminModal">
+              <span class="material-symbols-rounded d-inline-block align-middle text-success">add</span>
+              <span class="d-inline-block text-gray-900 fw-bold">Add New Admin</span>
+            </a>
+          </div>
+          <div class="d-inline-block align-self-center">
+            <a class="me-4" href="#"><span
+                class="material-symbols-rounded d-inline-block align-middle text-gray-900">search</span></a>
+            <a href="#"><span
+                class="material-symbols-rounded d-inline-block align-middle text-gray-900">notifications_active</span></a>
+          </div>
+        </div>
+        <table class="bg-light table table-hover">
+          <thead>
+            <tr class="pt-0">
+              <th scope="col pt-0">
+                <span class="d-inline-block me-2 align-middle lh-1">ID</span>
+                <span class="material-symbols-rounded text-success align-middle lh-1">arrow_downward</span>
+              </th>
+              <th scope="col" class="align-middle py-1vh lh-1">Name</th>
+              <th scope="col" class="align-middle py-1vh lh-1">Email</th>
+              <th scope="col" class="align-middle py-1vh lh-1">Verified</th>
+              <th scope="col" class="align-middle py-1vh lh-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#1</th>
+              <td class="align-middle">Emir Wicks</td>
+              <td class="align-middle">emir.wicks@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#student-profile"><span
+                    class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span></a>
+                <a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#editModal"><span
+                    class="material-symbols-rounded align-middle d-inline-block">edit</span></a>
+              </td>
+            </tr>
+            <tr class="h-6d875vh">
+              <th scope="row" class="align-middle">#2</th>
+              <td class="align-middle">Zaina Goldsmith</td>
+              <td class="align-middle">zaina.goldsmith@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#3</th>
+              <td class="align-middle">Mahima Lopez</td>
+              <td class="align-middle">mahima.lopez@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#4</th>
+              <td class="align-middle">Pharrell Murray</td>
+              <td class="align-middle">pharrell.murray@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#5</th>
+              <td class="align-middle">Annika Mcbride</td>
+              <td class="align-middle">annika.mcbride@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#6</th>
+              <td class="align-middle">Fatimah Clark</td>
+              <td class="align-middle">fatimah.clark@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#7</th>
+              <td class="align-middle">Klaudia Rhodes</td>
+              <td class="align-middle">klaudia.rhodes@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#8</th>
+              <td class="align-middle">Tillie Lucero</td>
+              <td class="align-middle">tillie.lucero@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#9</th>
+              <td class="align-middle">Sabrina Stephenson</td>
+              <td class="align-middle">sabrina.stephenson@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+            <tr data-bs-toggle="modal" data-bs-target="#student-profile" class="h-6d875vh">
+              <th scope="row" class="align-middle">#10</th>
+              <td class="align-middle">Annie Smith</td>
+              <td class="align-middle">annie.smith@mail.com</td>
+              <td class="align-middle">Yes</td>
+              <td class="align-middle text-end">
+                <span class="material-symbols-rounded d-inline-block align-middle me-4">visibility</span>
+                <span class="material-symbols-rounded align-middle d-inline-block">edit</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination-alignment">
+          <nav aria-label="Page navigations">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link border-success text-success p-4px" href="#"
+                  style="border-radius: 2px 0 0 2px;"><span
+                    class="material-symbols-rounded d-inline-block align-middle">
+                    chevron_left
+                  </span></a></li>
+              <li class="page-item"><a class="page-link border-success text-dark d-inline-block pt-4px pb-5px"
+                  href="#"><span class="d-inline-block">1</span></a></li>
+              <li class="page-item"><a class="page-link border-success text-dark d-inline-block pt-4px pb-5px"
+                  href="#"><span class="d-inline-block">2</span></a></li>
+              <li class="page-item"><a class="page-link border-success text-dark d-inline-block pt-4px pb-5px"
+                  href="#"><span class="d-inline-block">3</span></a></li>
+              <li class="page-item"><a class="page-link border-success text-success p-4px" href="#"
+                  style="border-radius: 0 2px 2px 0;"><span
+                    class="material-symbols-rounded d-inline-block align-middle">
+                    chevron_right
+                  </span></a></li>
+            </ul>
+          </nav>
+        </div>
+      </main>
+    </div>
+  </div>
+  <!-- <%- include('./layout/footer'); -%> -->
+
+
+  <script type="module" src="../main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
