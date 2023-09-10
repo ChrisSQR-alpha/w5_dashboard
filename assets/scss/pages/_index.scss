@@ -183,3 +183,8 @@ aside{
 .w-480{
   width: 480px;
 }
+.placeholder-style{
+  ::placeholder{
+    color: $gray-900 !important;
+  }
+}
